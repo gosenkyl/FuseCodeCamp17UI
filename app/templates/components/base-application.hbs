@@ -1,0 +1,13 @@
+{{header-nav playerCount=playerCount onMenuClick=(action "menuClick")}}
+
+{{#if isMenuOpen}}
+  {{side-menu content=players onMenuClick=(action "menuClick")}}
+{{/if}}
+
+{{game-grid grid=grid}}
+
+<div class="row">
+  <span>Turn Number: {{turnNumber}}</span>
+  {{log gameState}}
+  <span>Game State: {{gameState}}</span>
+</div>

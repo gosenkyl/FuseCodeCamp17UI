@@ -1,0 +1,13 @@
+<div class="player-image">
+  {{svg-circle
+    size="35"
+    fill=player.color
+    stroke="black"
+    strokeWidth="1"
+    rotate="45"
+  }}
+</div>
+
+{{#if isHover}}
+  <div class="hover-text">{{hoverText}}</div>
+{{/if}}

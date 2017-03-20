@@ -1,0 +1,22 @@
+<div class="close-menu" {{action "menuClick"}} >
+    <div class="close-icon"></div>
+</div>
+
+{{#each content as |player|}}
+
+  <div class="row menu-item">
+
+      <div class="centered">
+        {{svg-circle
+        size="15"
+        fill=player.color
+        stroke="black"
+        strokeWidth="1"
+        rotate="45"
+        }}
+      </div>
+
+      <div>{{player.name}}</div>
+  </div>
+
+{{/each}}
