@@ -1,13 +1,39 @@
-{{header-nav playerCount=playerCount onMenuClick=(action "menuClick")}}
+<div class="row header-nav">
+  <div class="row grow centered title">
+    <span>{{applicationTitle}}</span>
+  </div>
 
-{{#if isMenuOpen}}
-  {{side-menu content=players onMenuClick=(action "menuClick")}}
-{{/if}}
+  <div class="sub-title">
+    {{subTitle}}
+  </div>
+</div>
 
-{{game-grid grid=grid}}
+<div class="row">
+  {{#each grid as |column|}}
+      <div class="column">
+        {{#each column as |row|}}
+            <div class="centered border" style={{blockCSS}}>
+
+              {{#if row.name}}
+                  <div class="player row">
+                      <span class="name">{{row.name}}</span>
+
+                      <div class="stats column">
+                        <span class="hp">Health: {{row.hp}}</span>
+                        <span class="defence">Defense: {{row.defence}}</span>
+                        <span class="damage">Damage: {{row.dmg}}</span>
+                      </div>
+                  </div>
+              {{/if}}
+
+            </div>
+        {{/each}}
+      </div>
+  {{/each}}
+</div>
 
 <div class="row">
   <span>Turn Number: {{turnNumber}}</span>
-  {{log gameState}}
   <span>Game State: {{gameState}}</span>
 </div>
+

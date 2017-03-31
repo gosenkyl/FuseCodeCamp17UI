@@ -7,7 +7,8 @@ let {
   inject,
   get,
   set,
-  RSVP
+  RSVP,
+  Handlebars
   } = Ember;
 
 let {
@@ -20,18 +21,14 @@ export default Component.extend({
 
   api: inject.service("application"),
 
+  applicationTitle: "Multi-Player Battle Game",
+  subTitle: "Fuse Code Camp 2017",
+
   grid: null,
-
-  didInsertElement(){
-    this._super(...arguments);
-
-    //this.updateGameState();
-  },
 
   turnNumber: 0,
 
   gameState: computed("turnNumber", function(){
-
       return PromiseObject.create({
         promise: get(this, "api").getGameState().then(results => {
             let grid = get(results, "game.board.grid");
@@ -39,22 +36,24 @@ export default Component.extend({
             this.incrementProperty("turnNumber");
             return "Active";
           }).catch(error => {
-            console.log(error);
+            console.error(error);
             return "Error";
           })
       });
   }),
 
-  playerCount: 0,
+  width: computed("grid.[]", function(){
+    return get(this, "grid.length");
+  }),
+  height: computed("grid.[]", function(){
+    return get(this, "grid.firstObject.length");
+  }),
 
-  isMenuOpen: false,
+  blockCSS: computed("width", "height", function(){
+    let vw = 100 / get(this, "width") - 2;
+    let vh = 100 / get(this, "height") - 2;
 
-  actions: {
-
-    menuClick(){
-      this.toggleProperty("isMenuOpen");
-    }
-
-  }
+    return new Handlebars.SafeString("min-width: " + vw + "vw; min-height: " + vh + "vh;");
+  })
 
 });
