@@ -2,6 +2,7 @@ html, body{
   margin: 0;
   padding: 0;
 
+  font-family: "Courier New", Courier, monospace;
 }
 
 .application{
@@ -27,6 +28,12 @@ html, body{
   flex-grow: 1;
 }
 
+.width- {
+  &100 {
+    width: 100%;
+  }
+}
+
 .centered {
   display: flex;
 
@@ -41,18 +48,26 @@ html, body{
   align-items: center;
 }
 
+.space-around {
+  justify-content: space-around;
+}
+
 .player {
   color: white;
-  font-size: 14px;
+  font-size: .8em;
 
   .name {
     align-self: center;
-    font-size: 28px;
+    font-size: 1em;
+
+    padding-bottom: .2em;
   }
 
   .stats {
 
-    padding-left: 10px;
+    span {
+      padding: 0 4px;
+    }
 
     .hp {
       color: green;
@@ -63,10 +78,23 @@ html, body{
     }
 
     .damage {
-      color: black;
+      color: cyan;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
     }
   }
 
+}
+
+.dead {
+  color: white;
+  background-color: gray;
+
+  padding: 50px 30px;
+  border-radius: 40px 40px 0px 0px;
 }
 
 .header-nav {
@@ -80,16 +108,31 @@ html, body{
   }
 
   .sub-title {
+    position: fixed;
+    right: 10px;
+
     font-size: smaller;
     font-weight: lighter;
   }
 
 }
 
-
-
-.border {
-  background: url("http://blog.spoongraphics.co.uk/wp-content/uploads/2012/textures/14.jpg");
+.game-square {
+  background: url("/assets/images/game-square.jpg");
 
   border: thin solid white;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

@@ -8,32 +8,51 @@
   </div>
 </div>
 
-<div class="row">
-  {{#each grid as |column|}}
+<div class="row grow centered">
+    {{#if isLoading}}
+      <div class="loader"></div>
+    {{else if isNotStarted}}
+      <div>The game is currently not started.</div>
+    {{else if isError}}
       <div class="column">
-        {{#each column as |row|}}
-            <div class="centered border" style={{blockCSS}}>
+        <div>Error Message: {{errorMessage}}</div>
+      </div>
+    {{else if isStarted}}
+        {{#each grid as |column|}}
+            <div class="column">
+              {{#each column as |player|}}
+                  <div class="centered game-square" style={{blockCSS}}>
 
-              {{#if row.name}}
-                  <div class="player row">
-                      <span class="name">{{row.name}}</span>
+                    {{#if player.name}}
 
-                      <div class="stats column">
-                        <span class="hp">Health: {{row.hp}}</span>
-                        <span class="defence">Defense: {{row.defence}}</span>
-                        <span class="damage">Damage: {{row.dmg}}</span>
-                      </div>
+                        {{#if (eq player.hp 0)}}
+                          <div class="dead">{{player.name}}</div>
+                        {{else}}
+                            <div class="player column">
+                                <div class="name">{{player.name}}</div>
+
+                                <div class="stats row">
+                                    <span class="hp"><img src="/assets/images/health.png"/>{{player.hp}}</span>
+                                    <span class="defence"><img src="/assets/images/armor.png"/>{{player.defence}}</span>
+                                    <span class="damage"><img src="/assets/images/damage.png"/>{{player.dmg}}</span>
+                                </div>
+                            </div>
+                        {{/if}}
+
+                    {{/if}}
+
                   </div>
-              {{/if}}
-
+              {{/each}}
             </div>
         {{/each}}
-      </div>
-  {{/each}}
+
+    {{else}}
+      <div>Unknown Status</div>
+    {{/if}}
 </div>
 
-<div class="row">
-  <span>Turn Number: {{turnNumber}}</span>
-  <span>Game State: {{gameState}}</span>
+<div class="row space-around width-100">
+  <span>Request Count: {{turnNumber}}</span>
+  <span>Game Status: {{gameStatusDisplay}}</span>
 </div>
 
