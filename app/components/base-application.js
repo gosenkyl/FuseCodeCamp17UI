@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 
 let {
   Component,
@@ -46,7 +45,7 @@ export default Component.extend({
   gameState: Ember.observer("requestCount", function(){
     run.once(() => {
         get(this, "api").getGameState().then(results => {
-          this.gameSuccess(results);
+          this.gameSuccess(get(results, "content"));
         }).catch(error => {
           this.gameError(error);
         });
@@ -60,7 +59,6 @@ export default Component.extend({
 
     run.later(() => {
       this.incrementProperty("requestCount");
-      set(this, "errorCount", 0);
     });
   },
 
@@ -73,10 +71,14 @@ export default Component.extend({
       errorMessage = get(error, "responseText");
 
       if(isPresent(errorMessage)){
-        let json = JSON.parse(errorMessage);
+        try {
+          let json = JSON.parse(errorMessage);
 
-        if(isPresent(get(json, "reason"))){
-          errorMessage = get(json, "reason");
+          if (isPresent(get(json, "content"))) {
+            errorMessage = get(json, "content");
+          }
+        } catch(e){
+          errorMessage = "Default Error";
         }
       }
     }

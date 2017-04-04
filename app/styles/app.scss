@@ -52,33 +52,25 @@ html, body{
   justify-content: space-around;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .player {
   color: white;
-  font-size: .8em;
+  font-size: 12px;
 
   .name {
     align-self: center;
-    font-size: 1em;
+    font-size: 18px;
 
-    padding-bottom: .2em;
+    padding-bottom: 6px;
   }
 
   .stats {
 
-    span {
-      padding: 0 4px;
-    }
-
-    .hp {
-      color: green;
-    }
-
-    .defence {
-      color: red;
-    }
-
-    .damage {
-      color: cyan;
+    .stat {
+      align-items: center;
     }
 
     img {
@@ -93,7 +85,7 @@ html, body{
   color: white;
   background-color: gray;
 
-  padding: 50px 30px;
+  padding: 20px 10px;
   border-radius: 40px 40px 0px 0px;
 }
 
