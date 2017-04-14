@@ -56,26 +56,69 @@ html, body{
   justify-content: space-between;
 }
 
+.game-square {
+  background: url("/assets/images/game-square.jpg");
+  border: thin solid white;
+  align-items: flex-end;
+  position: relative;
+}
+
+.talk-bubble {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: auto;
+  background-color: lightyellow;
+}
+
+.round{
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+}
+
+.talktext{
+  color: black;
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
 .player {
-  color: white;
   font-size: 12px;
 
-  .name {
-    align-self: center;
-    font-size: 18px;
-
-    padding-bottom: 6px;
+  .player-move {
+    position: absolute;
+    top: -20px;
+    color: black;
   }
 
-  .stats {
+  .player-details {
+    color: white;
 
-    .stat {
-      align-items: center;
+    .name {
+      align-self: center;
+      font-size: 18px;
+
+      padding-bottom: 6px;
     }
 
-    img {
-      width: 20px;
-      height: 20px;
+    .stats {
+      width: 100%;
+
+      .stat {
+        align-items: center;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 
@@ -106,13 +149,6 @@ html, body{
     font-size: smaller;
     font-weight: lighter;
   }
-
-}
-
-.game-square {
-  background: url("/assets/images/game-square.jpg");
-
-  border: thin solid white;
 }
 
 .loader {

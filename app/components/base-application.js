@@ -21,9 +21,25 @@ export default Component.extend({
   applicationTitle: "Multi-Player Battle Game",
   subTitle: "Fuse Code Camp 2017",
 
-  grid: null,
+  game: null,
+  grid: computed.alias("game.board.grid"),
 
   requestCount: 0,
+  playerCount: computed("requestCount", function(){
+    let game = get(this, "game");
+    if(isEmpty(game)){
+      return 0;
+    }
+    return get(game, "players.length");
+  }),
+
+  deceasedCount: computed("requestCount", function(){
+    let game = get(this, "game");
+    if(isEmpty(game)){
+      return 0;
+    }
+    return get(game, "deceased.length");
+  }),
 
   gameStatuses: {NS: "Not Started", ST: "Started", E: "Error", L: "Loading", U: "Unknown"},
   gameStatus: "L",
@@ -53,8 +69,8 @@ export default Component.extend({
   }).on("init"),
 
   gameSuccess(results){
-    let grid = get(results, "game.board.grid");
-    set(this, "grid", grid);
+    let game = get(results, "game");
+    set(this, "game", game);
     set(this, "gameStatus", "ST");
 
     run.later(() => {
