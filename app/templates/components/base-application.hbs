@@ -29,11 +29,13 @@
                         {{else}}
                             <div class="player column grow">
 
-                                <div class="player-move talk-bubble round btm-left">
-                                    <div class="talktext">
-                                        <p>{{player-action player}}</p>
-                                    </div>
-                                </div>
+                                {{#if (not-eq (player-action player) "")}}
+                                  <div class="player-move talk-bubble round btm-left">
+                                      <div class="talktext">
+                                          <p>{{player-action player}}</p>
+                                      </div>
+                                  </div>
+                                {{/if}}
 
                                 <div class="player-details column grow centered">
                                   <div class="name">{{player.name}}</div>

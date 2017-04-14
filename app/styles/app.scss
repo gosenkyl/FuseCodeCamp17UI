@@ -60,7 +60,6 @@ html, body{
   background: url("/assets/images/game-square.jpg");
   border: thin solid white;
   align-items: flex-end;
-  position: relative;
 }
 
 .talk-bubble {
@@ -93,8 +92,6 @@ html, body{
   font-size: 12px;
 
   .player-move {
-    position: absolute;
-    top: -20px;
     color: black;
   }
 
